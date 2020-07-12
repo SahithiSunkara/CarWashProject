@@ -1,0 +1,5 @@
+#Mongodb connection
+spring.data.mongodb.database=carwash
+
+#Server connection
+server.port = 8090

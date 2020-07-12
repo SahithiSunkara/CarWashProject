@@ -1,0 +1,70 @@
+<h2>Place Order</h2>
+<mat-grid-list cols="2" rowHeight="2:1">
+<div class="container">
+<form [formGroup]="orderform" (ngSubmit)="onSubmit()" novalidate>
+<mat-grid-tile>
+  <div class="form-group">
+	<mat-form-field appearance="fill">
+    <mat-label>Car No</mat-label>
+    <input matInput type="text" name="carno" class="form-control" formControlName="carno" >
+  	</mat-form-field>
+  </div>
+  
+  <div class="form-group">
+    <mat-form-field appearance="fill" >
+    <mat-label>Favorite food</mat-label>
+  <mat-select formControlName="name">
+    <mat-option *ngFor="let package of packages>
+      {{package}}
+    </mat-option>
+  </mat-select>
+    <mat-label>Package</mat-label>
+    <input matInput type="text" name="pacakge1" class="form-control" formControlName="pacakge1" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" name="lastName" class="form-control" formControlName="lastName" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" name="email" class="form-control" formControlName="email" >
+    </mat-form-field>
+   </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Phone no</mat-label>
+    <input matInput type="number" name="phone_no" class="form-control" formControlName="phone_no" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput type="text" name="address" class="form-control" formControlName="address" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" name="password" class="form-control" formControlName="password" >
+    </mat-form-field>
+   </div>
+ 
+  
+  <div class="form-group">
+  
+  <button type="submit">Register</button><br>
+  <button type="button" routerLink="/">Cancel</button>
+  </div></mat-grid-tile>
+</form>
+</div>
+

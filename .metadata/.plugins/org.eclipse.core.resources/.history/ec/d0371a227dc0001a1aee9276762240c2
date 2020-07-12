@@ -1,0 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators ,FormBuilder} from '@angular/forms';
+import { CustomerService } from '../customer.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatFormFieldModule,MatFormFieldControl} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
+@Component({
+  selector: 'app-new-order',
+  templateUrl: './new-order.component.html',
+  styleUrls: ['./new-order.component.css']
+})
+export class NewOrderComponent implements OnInit {
+
+clicked: boolean = false;
+			response : any;
+			packages: any = ['package1', 'package2', 'package3', 'package4']
+		
+		
+	
+  constructor(private service:CustomerService,public formBuilder: FormBuilder) {
+	
+ }
+packageForm = this.formBuilder.group({
+    name: ['']
+  })
+
+orderform = new FormGroup({
+			firstName : new FormControl('',Validators.required),
+			middleName : new FormControl(''),
+			lastName : new FormControl('',Validators.required),
+			email : new FormControl('',Validators.required),
+			phone_no : new FormControl('',Validators.required),
+			address : new FormControl('',Validators.required),
+			password : new FormControl('',Validators.required),
+			packages : this.packageForm.value
+			
+		})
+  ngOnInit(): void {
+	
+	
+	
+  }
+
+			onSubmit(){
+				console.log(this.orderform.value)
+				this.service.createOrder(this.orderform.value).subscribe((result)=>{
+		console.warn(result)
+		this.response = result
+			})
+}
+
+}

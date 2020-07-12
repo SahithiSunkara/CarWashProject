@@ -1,0 +1,84 @@
+package com.carwashadmin.main.bean;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class Details {
+	
+	@Id
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	private String firstName;
+	private String MiddleName;
+	private String LastName;
+	private String email;
+	@Override
+	public String toString() {
+		return "Details [id=" + id + ", FirstName=" + firstName + ", MiddleName=" + MiddleName + ", LastName="
+				+ LastName + ", email=" + email + ", phone_no=" + phone_no + ", Address=" + Address + ", Password="
+				+ Password + "]";
+	}
+	public Details(String id, String firstName, String middleName, String lastName, String email, Integer phone_no,
+			String address, String password) {
+		super();
+		this.id = id;
+		firstName = firstName;
+		MiddleName = middleName;
+		LastName = lastName;
+		this.email = email;
+		this.phone_no = phone_no;
+		Address = address;
+		Password = password;
+	}
+	private Integer phone_no;
+	private String Address;
+	private String Password;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		firstName = firstName;
+	}
+	public String getMiddleName() {
+		return MiddleName;
+	}
+	public void setMiddleName(String middleName) {
+		MiddleName = middleName;
+	}
+	public String getLastName() {
+		return LastName;
+	}
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Integer getPhone_no() {
+		return phone_no;
+	}
+	public void setPhone_no(Integer phone_no) {
+		this.phone_no = phone_no;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
+	}
+}

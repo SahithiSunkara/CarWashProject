@@ -1,0 +1,9 @@
+package com.carwashadmin.main.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.carwashadmin.main.bean.Details;
+
+public interface TestRepo extends MongoRepository<Details, String>{
+
+}

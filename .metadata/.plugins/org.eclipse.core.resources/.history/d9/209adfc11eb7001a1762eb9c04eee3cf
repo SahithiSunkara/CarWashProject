@@ -1,0 +1,22 @@
+package com.carwashadmin.main.controller;
+
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.carwashadmin.main.bean.Details;
+import com.carwashadmin.main.repository.DetRepo;
+
+@RestController
+@RequestMapping("/data")
+public class AdminController {
+	
+	DetRepo detRepo;
+	
+	@RequestMapping(value = "/{userdet}", method = RequestMethod.POST)
+	public Details addNewUsers(@RequestBody Details detail) {
+		System.out.println("Saving user."+detail);
+		return detRepo.save(detail);
+	}
+}

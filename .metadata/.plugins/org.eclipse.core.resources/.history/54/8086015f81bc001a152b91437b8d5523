@@ -1,0 +1,73 @@
+package com.carwashadmin.main.bean;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class Details {
+	
+	@Id
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	private String email;
+	@Override
+	public String toString() {
+		return "Details [id=" + id + ", firstName=" + firstName + ", MiddleName=" + middleName + ", LastName="
+				+ lastName + ", email=" + email + ", phone_no=" + phone_no + ", Address=" + Address + ", Password="
+				+ Password + "]";
+	}
+	
+	private Integer phone_no;
+	private String Address;
+	private String Password;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		firstName = firstName;
+	}
+	public String getMiddleName() {
+		return middleName;
+	}
+	public void setMiddleName(String middleName) {
+		middleName = middleName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Integer getPhone_no() {
+		return phone_no;
+	}
+	public void setPhone_no(Integer phone_no) {
+		this.phone_no = phone_no;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
+	}
+}

@@ -1,0 +1,27 @@
+<p>home-login works!</p>
+
+<mat-tab-group>
+  <mat-tab label="Home"> 
+
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput type="email" name="mail" class="form-control" formControlName="email">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary">Submit</button>
+  
+ 
+</div>
+
+
+
+ </mat-tab>
+  <mat-tab label="About"> About </mat-tab>
+  
+</mat-tab-group>

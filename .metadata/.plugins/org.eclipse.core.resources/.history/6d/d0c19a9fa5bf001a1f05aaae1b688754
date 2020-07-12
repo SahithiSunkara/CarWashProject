@@ -1,0 +1,14 @@
+<h1>Admin</h1>
+
+<button>Customers</button>  
+<button>Washers</button>
+
+<table>
+
+<td>Customer</td>
+<tr>sahithi</tr>
+<td>car no.</td>
+<tr>5678</tr>
+
+
+</table>

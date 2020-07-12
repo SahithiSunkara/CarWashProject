@@ -1,0 +1,21 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+import { CustomerRegisterComponent } from './customer/customer-register/customer-register.component';
+
+@NgModule({
+declarations: [
+AppComponent,
+CustomerRegisterComponent
+],
+imports: [
+BrowserModule,
+
+
+],
+providers: [],
+bootstrap: [AppComponent]
+})
+export class AppModule { }

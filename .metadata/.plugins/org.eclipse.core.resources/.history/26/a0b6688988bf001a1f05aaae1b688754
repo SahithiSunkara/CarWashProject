@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { HomeLoginComponent } from '../home-login/home-login.component';
+import { ViewChild, AfterViewInit } from '@angular/core';
+import {CustomerService} from '../customer.service';
+
+
+@Component({
+  selector: 'app-customer-home',
+  templateUrl: './customer-home.component.html',
+  styleUrls: ['./customer-home.component.css']
+})
+export class CustomerHomeComponent implements OnInit {
+
+     id : any;
+username:any;
+@ViewChild(HomeLoginComponent) homecomponent:any;
+  constructor(private actRoute: ActivatedRoute, private service:CustomerService) {
+ }
+
+
+  ngOnInit(){
+	
+	this.service.loginUserName.subscribe(result=>{
+		this.username=result;
+	})
+	
+	
+	
+  }
+
+}

@@ -1,0 +1,71 @@
+package com.carwashadmin.main.orderServicimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+
+import com.carwashadmin.main.bean.OrderDetails;
+import com.carwashadmin.main.orderRepository.OrderDetailsRepository;
+import com.carwashadmin.main.orderService.OrderService;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
+import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
+
+@Service
+public class OrderServiceImpl implements OrderService{
+	
+	@Autowired
+	OrderDetailsRepository orderRepo;
+	
+	 @Autowired
+	 private MongoOperations mongo;
+
+	    public int getNextSequence(String seqName)
+	    {
+	    	OrderDetails order = mongo.findAndModify(
+	            query(where("_id").is(seqName)),
+	            new Update().inc("seq",1),
+	            options().returnNew(true).upsert(true),
+	            CustomSequences.class);
+	        return counter.getSeq();
+	    }
+
+	@Override
+	public List<OrderDetails> updateOrder(OrderDetails data) {
+
+		int i=0;
+		List<OrderDetails> dbdata = orderRepo.findByCarno(data.getCar_no());
+		if(dbdata != null) {
+			dbdata.get(i).setCustomer(data.getCustomer());
+			dbdata.get(i).setAdd_ons(data.getAdd_ons());
+			dbdata.get(i).setDelivery_date(data.getDelivery_date());
+			dbdata.get(i).setScheduled_date(data.getScheduled_date());
+			dbdata.get(i).setWasher(data.getWasher());
+			dbdata.get(i).setPayment(data.getPayment());
+			dbdata.get(i).setStatus(data.getStatus());
+			dbdata.get(i).setRating(data.getRating());
+			dbdata.get(i).setFeedback(data.getFeedback());
+			dbdata.get(i).setNotes(data.getNotes());
+			}
+		
+		return dbdata;
+	}
+
+	@Override
+	public List<OrderDetails> getbyCustomer(String email) {
+
+		List<OrderDetails> details = orderRepo.findByCustomer(email);
+		return details;
+	}
+
+	@Override
+	public List<OrderDetails> getbyWasher(String washer) {
+
+		List<OrderDetails> details = orderRepo.findByWasher(washer);
+		return details;
+	}
+
+}

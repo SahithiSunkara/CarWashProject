@@ -1,0 +1,17 @@
+package com.carwashadmin.main.orderRepository;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.carwashadmin.main.bean.OrderDetails;
+
+public interface OrderDetailsRepository extends MongoRepository<OrderDetails, String>{
+
+	
+	List<OrderDetails> findByCustomer(String customer);
+	
+	List<OrderDetails> findByWasher(String washer);
+	
+	List<OrderDetails> findByStatus(String status);
+}

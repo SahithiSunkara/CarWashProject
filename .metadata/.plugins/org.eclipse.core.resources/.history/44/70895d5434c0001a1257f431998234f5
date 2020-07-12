@@ -1,0 +1,31 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { CustomerRegisterComponent } from './customer/customer-register/customer-register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeLoginComponent } from './customer/home-login/home-login.component';
+import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
+import { UserListComponent } from './customer/user-list/user-list.component'
+import { WasherHomeComponent } from './customer/washer-home/washer-home.component';
+import { AdminHomeComponent } from './customer/admin-home/admin-home.component';
+import { NewOrderComponent } from './customer/new-order/new-order.component'
+
+const routes: Routes = [
+{path: '', component: HomeLoginComponent},
+{path: 'register', component: CustomerRegisterComponent},
+{path: 'customerhome', component: CustomerHomeComponent},
+{path: 'userlist', component: UserListComponent},
+{path: 'washerhome', component: WasherHomeComponent},
+{path: 'adminhome', component: AdminHomeComponent},
+{path: 'neworder', component: NewOrderComponent}
+
+];
+
+@NgModule({
+  imports: [
+	RouterModule.forRoot(routes),
+	FormsModule,
+    ReactiveFormsModule
+],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

@@ -1,0 +1,45 @@
+
+<mat-progress-spinner mode="indeterminate" *ngIf="IsWait">
+</mat-progress-spinner>
+<mat-tab-group>
+  <mat-tab label="Home"> 
+<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-tile>
+<form [formGroup]="loginform" (ngSubmit)="onSubmit()" novalidate>
+<div class="example-container" style="height: 100px;">
+  <mat-form-field appearance="fill">
+    <mat-label>UserName</mat-label>
+    <input matInput name="email" type="text" class="form-control" formControlName="email" >
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput name="password" type="password" class="form-control" formControlName="password" >
+  </mat-form-field>
+  <br>
+  <div class="example-button-row" class="space">
+  <button mat-raised-button class="button">Submit</button>
+  
+ 
+  <button mat-raised-button class="space" routerLink="/register">Register</button>
+ </div> 
+
+</div>
+</form>
+</mat-grid-tile>
+<mat-grid-tile>
+
+<div class="navbar-brand">
+        <a class="navbar-item">
+          <img src="../../../assets/images/carwash.png" style="height: 500px;">
+        </a>
+      </div>
+
+</mat-grid-tile>
+</mat-grid-list>
+
+
+ </mat-tab>
+  <mat-tab label="About"> About </mat-tab>
+  
+</mat-tab-group>

@@ -1,0 +1,34 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import {AppRoutingModule} from './app-routing.module'
+import { AppComponent } from './app.component';
+import { CustomerRegisterComponent } from './customer/customer-register/customer-register.component'
+import { CustomerModulModule } from './customer/customer-modul/customer-modul.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeLoginComponent } from './customer/home-login/home-login.component';
+import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
+import { UserListComponent } from './customer/user-list/user-list.component';
+import { WasherHomeComponent } from './customer/washer-home/washer-home.component';
+import { AdminHomeComponent } from './customer/admin-home/admin-home.component';
+
+@NgModule({
+declarations: [
+AppComponent,
+CustomerRegisterComponent,
+HomeLoginComponent,
+CustomerHomeComponent,
+UserListComponent,
+WasherHomeComponent,
+AdminHomeComponent
+],
+imports: [
+BrowserModule,
+AppRoutingModule,
+CustomerModulModule,
+BrowserAnimationsModule
+
+],
+providers: [],
+bootstrap: [AppComponent]
+})
+export class AppModule { }

@@ -1,0 +1,10 @@
+button{
+	
+    color: white;
+    background-color: #00b2ff;
+
+}
+
+space{
+	margin-right : 1rem;
+}

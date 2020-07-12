@@ -1,0 +1,131 @@
+package com.carwashadmin.main.bean;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Document(collection = "OrderDetails")
+public class OrderDetails {
+
+	@MongoId(value = FieldType.OBJECT_ID)
+	private String id;
+	@Override
+	public String toString() {
+		return "OrderDetails [id=" + id + ", car_no=" + car_no + ", add_ons=" + add_ons + ", customer=" + customer
+				+ ", washer=" + washer + ", scheduled_date=" + scheduled_date + ", delivery_date=" + delivery_date
+				+ ", status=" + status + ", payment=" + payment + ", rating=" + rating + ", notes=" + notes
+				+ ", feedback=" + feedback + "]";
+	}
+	public OrderDetails(String id, String car_no, String add_ons, String customer, String washer, Date scheduled_date,
+			Date delivery_date, String status, Integer payment, Integer rating, String notes, String feedback) {
+		super();
+		this.id = id;
+		this.car_no = car_no;
+		this.add_ons = add_ons;
+		this.customer = customer;
+		this.washer = washer;
+		this.scheduled_date = scheduled_date;
+		this.delivery_date = delivery_date;
+		this.status = status;
+		this.payment = payment;
+		this.rating = rating;
+		this.notes = notes;
+		this.feedback = feedback;
+	}
+	@Indexed(unique = true)
+	private String car_no;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getCar_no() {
+		return car_no;
+	}
+	public void setCar_no(String car_no) {
+		this.car_no = car_no;
+	}
+	public String getAdd_ons() {
+		return add_ons;
+	}
+	public void setAdd_ons(String add_ons) {
+		this.add_ons = add_ons;
+	}
+	public String getCustomer() {
+		return customer;
+	}
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+	public String getWasher() {
+		return washer;
+	}
+	public void setWasher(String washer) {
+		this.washer = washer;
+	}
+	public Date getScheduled_date() {
+		return scheduled_date;
+	}
+	public void setScheduled_date(Date scheduled_date) {
+		this.scheduled_date = scheduled_date;
+	}
+	public Date getDelivery_date() {
+		return delivery_date;
+	}
+	public void setDelivery_date(Date delivery_date) {
+		this.delivery_date = delivery_date;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Integer getPayment() {
+		return payment;
+	}
+	public void setPayment(Integer payment) {
+		this.payment = payment;
+	}
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	public String getFeedback() {
+		return feedback;
+	}
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+	private String add_ons;
+	@Indexed(unique = true)
+	private String customer;
+	@Indexed(unique = true)
+	private String washer;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date scheduled_date;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date delivery_date;
+	@Indexed(unique = true)
+	private String status;
+	private Integer payment;
+	private Integer rating;
+	private String notes;
+	private String feedback;
+	private List<byte[]> photo;
+}

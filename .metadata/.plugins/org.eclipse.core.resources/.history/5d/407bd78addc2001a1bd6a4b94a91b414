@@ -1,0 +1,96 @@
+package com.carwashadmin.main.orderServicimpl;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.carwashadmin.main.bean.CustomSequences;
+import com.carwashadmin.main.bean.Images;
+import com.carwashadmin.main.bean.OrderDetails;
+import com.carwashadmin.main.image.ImageCompress;
+import com.carwashadmin.main.orderRepository.ImagesRepository;
+import com.carwashadmin.main.orderRepository.OrderDetailsRepository;
+import com.carwashadmin.main.orderService.OrderService;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
+import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
+
+
+@Service
+public class OrderServiceImpl implements OrderService{
+	
+	@Autowired
+	OrderDetailsRepository orderRepo;
+	
+	 @Autowired
+	 private MongoOperations mongo;
+	 
+	 @Autowired
+	 ImagesRepository imgRepo;
+
+	    public int getNextSequence(String seqName)
+	    {
+	    	 CustomSequences counter = mongo.findAndModify(
+	    	            query(where("_id").is(seqName)),
+	    	            new Update().inc("seq",1),
+	    	            options().returnNew(true).upsert(true),
+	    	            CustomSequences.class);
+	    	        return counter.getSeq();
+	    }
+
+	@Override
+	public OrderDetails updateOrder(OrderDetails data) {
+
+		OrderDetails updated = null;
+		int i=0;
+		OrderDetails dbdata = orderRepo.findByOrderId(data.getOrderId());
+		if(dbdata != null) {
+			dbdata.setOrderId(data.getOrderId());
+			dbdata.setCustomer(data.getCustomer());
+			dbdata.setAdd_ons(data.getAdd_ons());
+			dbdata.setDelivery_date(data.getDelivery_date());
+			dbdata.setScheduled_date(data.getScheduled_date());
+			dbdata.setWasher(data.getWasher());
+			dbdata.setPayment(data.getPayment());
+			dbdata.setStatus(data.getStatus());
+			dbdata.setRating(data.getRating());
+			dbdata.setFeedback(data.getFeedback());
+			dbdata.setNotes(data.getNotes());
+			dbdata.setPackages(data.getPackages());
+			dbdata.setPickuplocation(data.getPickuplocation());
+			dbdata.setDroplocation(data.getDroplocation());
+			dbdata.setPhoto(data.getPhoto());
+			}
+		updated = orderRepo.save(dbdata);
+		return updated;
+	}
+
+	@Override
+	public List<OrderDetails> getbyCustomer(String email) {
+
+		List<OrderDetails> details = orderRepo.findByCustomer(email);
+		return details;
+	}
+
+	@Override
+	public List<OrderDetails> getbyWasher(String washer) {
+
+		List<OrderDetails> details = orderRepo.findByWasher(washer);
+		return details;
+	}
+
+	@Override
+	public Images UploadImage(MultipartFile file) throws IOException {
+		Images img = new Images(file.getOriginalFilename(), file.getContentType(),
+				ImageCompress.compressBytes(file.getBytes()));
+		return imgRepo.save(img);
+		
+	}
+
+}

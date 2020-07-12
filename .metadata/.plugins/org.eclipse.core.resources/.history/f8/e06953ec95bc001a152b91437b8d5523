@@ -1,0 +1,16 @@
+package com.carwashadmin.main.repository;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.carwashadmin.main.bean.Details;
+
+@Repository
+public interface TestRepo extends MongoRepository<Details, String>{
+
+	@Query(value="{'email' : ?0}")
+	public List<Details> findByemail(String email);
+}

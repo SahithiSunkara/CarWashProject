@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://localhost:8080/data/addcustomer",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

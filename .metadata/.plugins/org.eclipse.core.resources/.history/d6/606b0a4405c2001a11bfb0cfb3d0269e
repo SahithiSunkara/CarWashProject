@@ -1,0 +1,5 @@
+package com.carwashadmin.main.orderRepository;
+
+public interface ImagesRepository {
+
+}

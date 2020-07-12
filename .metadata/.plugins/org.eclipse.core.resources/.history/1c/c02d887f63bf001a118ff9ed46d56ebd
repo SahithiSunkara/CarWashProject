@@ -1,0 +1,30 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { HomeLoginComponent } from '../home-login/home-login.component';
+
+
+@Component({
+  selector: 'app-customer-home',
+  templateUrl: './customer-home.component.html',
+  styleUrls: ['./customer-home.component.css']
+})
+export class CustomerHomeComponent implements OnInit {
+
+     id : any;;
+
+  constructor(private actRoute: ActivatedRoute) {
+ }
+
+
+  ngOnInit(){
+	
+	this.actRoute.queryParams.subscribe((params)=>{
+		console.log(this.actRoute)
+		
+		
+	})
+	
+  }
+
+}
