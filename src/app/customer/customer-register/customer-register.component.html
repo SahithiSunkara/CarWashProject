@@ -1,0 +1,65 @@
+<h2>Register</h2>
+
+<div class="container">
+<form [formGroup]="registerform" (ngSubmit)="onSubmit()" novalidate>
+  
+	<mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput type="text" name="firstname" class="form-control" formControlName="firstName" >
+  	</mat-form-field>
+  <br>
+  
+  
+    <mat-form-field appearance="fill">
+    <mat-label>Middle Name</mat-label>
+    <input matInput type="text" name="middlename" class="form-control" formControlName="middleName" >
+    </mat-form-field>
+ <br>
+  
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" name="lastName" class="form-control" formControlName="lastName" >
+    </mat-form-field>
+  
+  <br>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" name="email" class="form-control" formControlName="email" >
+    </mat-form-field>
+   
+   <br>
+   
+ 
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Phone no</mat-label>
+    <input matInput type="number" name="phone_no" class="form-control" formControlName="phone_no" >
+    </mat-form-field>
+  <br>
+  
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput type="text" name="address" class="form-control" formControlName="address" >
+    </mat-form-field>
+  <br>
+  
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" name="password" class="form-control" formControlName="password" >
+    </mat-form-field>
+  
+ 
+  
+  
+  <button mat-raised-button style="background-color: royalblue;" type="submit">Register</button><br>
+  <button mat-raised-button style="background-color: red;" type="button" routerLink="/">Cancel</button>
+
+</form>
+</div>
+
+
+

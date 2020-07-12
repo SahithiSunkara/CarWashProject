@@ -1,0 +1,26 @@
+export class Customer{
+	
+id : number;
+firstName: string;
+middleName: string;
+lastName: string;
+email: string;
+phone_no: number;
+address : string;
+password: string;
+role: string;
+
+
+constructor(id: number,firstName: string,middleName: string,lastName: string, email: string,  phone_no: number, address: string, password: string, role: string){
+this.id = id;
+this.firstName = firstName;
+this.middleName = middleName;
+this.lastName = lastName;
+this.email = email;
+this.phone_no = phone_no;
+this.address = address;
+this.password = password;
+this.role = role;
+
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "/api": {
+    
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+ }
