@@ -52,6 +52,9 @@ public class Details {
 		this.password = password;
 		this.image = image;
 	}
+	public Details() {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		return "Details [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="

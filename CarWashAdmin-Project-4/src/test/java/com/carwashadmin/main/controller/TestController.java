@@ -1,0 +1,78 @@
+package com.carwashadmin.main.controller;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.Arrays;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.carwashadmin.main.bean.Details;
+import com.carwashadmin.main.service.CustomerService;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = CustomerController.class)
+public class TestController {
+
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@MockBean
+	private CustomerService service;
+
+	Details mockCourse = new Details();
+
+
+	@Test
+	public void getDetailsbyEmailId() throws Exception {
+
+		Mockito.when(
+				service.loginValidate(Mockito.anyString())).thenReturn(mockCourse);
+
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+				"/students/Student1/courses/Course1").accept(
+				MediaType.APPLICATION_JSON);
+
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+		System.out.println(result.getResponse());
+		String expected = "{id:Course1,name:Spring,description:10Steps}";
+
+		JSONAssert.assertEquals(expected, result.getResponse()
+				.getContentAsString(), false);
+	}
+
+	@PostMapping("/AddDetails")
+	public ResponseEntity<Void> AddUserDetails(
+			@PathVariable String studentId, @RequestBody Details det) throws IOException {
+
+		Details details = service.AddDetails(det);
+
+		if (details == null)
+			return ResponseEntity.noContent().build();
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+				"/{id}").buildAndExpand(details.getId()).toUri();
+
+		return ResponseEntity.created(location).build();
+	}
+
+
+	
+}

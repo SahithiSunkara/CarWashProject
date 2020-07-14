@@ -24,6 +24,9 @@ public class Images {
 		this.type = type;
 		this.picbyte = picbyte;
 	}
+	public Images() {
+		// TODO Auto-generated constructor stub
+	}
 	public void setId(String id) {
 		this.id = id;
 	}

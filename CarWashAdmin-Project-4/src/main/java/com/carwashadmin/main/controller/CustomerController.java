@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,20 +47,17 @@ public class CustomerController {
 	@Autowired
 	CustomerService cutomerService;
 
-	/*
-	 * @RequestMapping(value = "/{userdet}", method = RequestMethod.POST) public
-	 * CustomerDetails addNewUsers(@RequestBody CustomerDetails detail) {
-	 * System.out.println("Saving user." + detail); return detRepo.save(detail); }
-	 */
+	private static Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+	
 	@GetMapping("/getCustomers")
-	public List<Details> getCustomers(){
+	public List<Details> getCustomers() throws IOException{
 		return testRepo.findAll();
 	}
 	
 	 @PostMapping("/AddDetails")
-	  public Details addcustomer(@RequestBody Details customer) { 
+	  public Details addcustomer(@RequestBody Details customer) throws IOException{ 
 		 System.out.println("******************JSON**************"+customer);
-		 Details list= null; 
+		 Details list= new Details(); 
 	   try {
 		list =cutomerService.AddDetails(customer);
 	} catch (IOException e) {
@@ -70,41 +69,53 @@ public class CustomerController {
 	  }
 	 
 	 @GetMapping("/getbyEmail/{email}")
-	 public Details getbyEmail(@PathVariable String email) {
-		
-		 Details response = cutomerService.loginValidate(email);
+	 public Details getbyEmail(@PathVariable String email) throws IOException{
+		Details response= new Details();
+		 try {
+		  response = cutomerService.loginValidate(email);
+	 } catch (Exception e) {
+   		 LOGGER.error(e.getMessage(), e);
+   		 LOGGER.error(e.getMessage(), "Error Occured in getbyEmail");
+   		 LOGGER.error(e.getMessage(), "Error Occured in getbyemail");
+   		 LOGGER.error(e.getMessage(), "Error Occured in getbyemail");
+   	 }
+		 
 		 return response;
 	 }
 	 
 	 @GetMapping("/getbyrole/{role}")
-	 public List<Details> GetbyRole(@PathVariable String role) {
+	 public List<Details> GetbyRole(@PathVariable String role) throws IOException{
+		 List<Details> list = new ArrayList<Details>();
+		try{
 		 System.out.println(role);
-		 List<Details> list = testRepo.findByRole(role);
+		list = testRepo.findByRole(role);
 		 System.out.println(list);
+	 } catch (Exception e) {
+   		 LOGGER.error(e.getMessage(), e);
+   		 LOGGER.error(e.getMessage(), "Error Occured in gtbyRole");
+   		 LOGGER.error(e.getMessage(), "Error Occured in getbyRole");
+   		 LOGGER.error(e.getMessage(), "Error Occured in getbyRole");
+   	 }
 		 return list;
 	 }
-		/*
-		 * @GetMapping("/delete/{id}") public Details delete(@PathVariable String id) {
-		 * 
-		 * int i=0; System.out.println(id);
-		 * System.out.println(testRepo.findByfirstName(id)); List<Details>
-		 * det=testRepo.findByfirstName(id); System.out.println("det value"+det); return
-		 * det.get(i);
-		 * 
-		 * 
-		 * }
-		 */
+		
 	 
 		
 		  @DeleteMapping("/customerdelete/{email}")
-		  public String CustomerDelete(@PathVariable String email){ 
+		  public BodyBuilder CustomerDelete(@PathVariable String email){ 
 			  Details result= testRepo.findByEmail(email); 
-			  int i=1;
 			  System.out.println(result);
 			  System.out.println(result.getId());
 			  String id= result.getId();
+			  try {
 			  testRepo.deleteById(id);
-			  return "deleted";
+		  } catch (Exception e) {
+		   		 LOGGER.error(e.getMessage(), e);
+		   		 LOGGER.error(e.getMessage(), "Error Occured in CustomerDelete");
+		   		 LOGGER.error(e.getMessage(), "Error Occured in CustomerDelete");
+		   		 LOGGER.error(e.getMessage(), "Error Occured in CustomerDelete");
+		   	 }
+			  return ResponseEntity.status(HttpStatus.OK);
 			  }
 		 
 	
@@ -112,25 +123,19 @@ public class CustomerController {
 		  @PutMapping("/updatecustomer")
 		  public Details updatecustomer(@RequestBody Details updatedDet) throws IOException {
 			  System.out.println(updatedDet);
-		  Details data = cutomerService.UpdateDetails(updatedDet); 
+			  Details data = new Details();
+			  try {
+		   data = cutomerService.UpdateDetails(updatedDet); 
+		  } catch (Exception e) {
+		   		 LOGGER.error(e.getMessage(), e);
+		   		 LOGGER.error(e.getMessage(), "Error Occured in UpdateCustomer");
+		   		 LOGGER.error(e.getMessage(), "Error Occured in UpdateCustomer");
+		   		 LOGGER.error(e.getMessage(), "Error Occured in UpdateCustomer");
+		   	 }
 		  return data;
 		  
 		  }
 		 
 	
-	/*
-	 * @RequestMapping(value = "/getcustomer/{cutomerId}") public CustomerDetails
-	 * getcustomer(@PathVariable String Id) throws IOException { CustomerDetails
-	 * Detailslist= null; Detailslist = cutomerService.getDetails(Id); return
-	 * Detailslist;
-	 * 
-	 * }
-	 * 
-	 * @RequestMapping(value = "/upload") public BodyBuilder
-	 * uplaodImage(@RequestParam("imageFile") MultipartFile file) {
-	 * 
-	 * System.out.println("Original Image Byte Size - " + file.getBytes().length);
-	 * 
-	 * return ResponseEntity.status(HttpStatus.OK); }
-	 */
+
 }
