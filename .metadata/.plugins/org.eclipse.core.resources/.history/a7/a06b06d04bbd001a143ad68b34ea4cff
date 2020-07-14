@@ -1,0 +1,5 @@
+package com.carwashadmin.main.orderServicimpl;
+
+public class OrderServiceImpl {
+
+}

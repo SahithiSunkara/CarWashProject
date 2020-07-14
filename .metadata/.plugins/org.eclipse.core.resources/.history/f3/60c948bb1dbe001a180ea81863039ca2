@@ -1,0 +1,16 @@
+package com.carwashadmin.main.orderService;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.carwashadmin.main.bean.OrderDetails;
+
+@Service
+public interface OrderService {
+
+	public List<OrderDetails> updateOrder(OrderDetails data);
+
+	public List<OrderDetails> getbyCustomer(String email);
+
+}

@@ -1,0 +1,21 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { CustomerRegisterComponent } from './customer/customer-register/customer-register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeLoginComponent } from './customer/home-login/home-login.component'
+
+
+const routes: Routes = [
+{path: '', component: HomeLoginComponent},
+{path: '/register', component: CustomerRegisterComponent}
+];
+
+@NgModule({
+  imports: [
+	RouterModule.forRoot(routes),
+	FormsModule,
+    ReactiveFormsModule
+],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

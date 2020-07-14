@@ -1,0 +1,95 @@
+package com.carwashadmin.main.bean;
+
+import java.util.Arrays;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class CustomerDetails {
+
+	private String customer_ID;
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	private byte[] photo;
+	
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	public String getCustomer_ID() {
+		return customer_ID;
+	}
+	public void setCustomer_ID(String customer_ID) {
+		this.customer_ID = customer_ID;
+	}
+	public String getFirstName() {
+		return FirstName;
+	}
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+	public String getMiddleName() {
+		return MiddleName;
+	}
+	public void setMiddleName(String middleName) {
+		MiddleName = middleName;
+	}
+	public String getLastName() {
+		return LastName;
+	}
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone_no() {
+		return phone_no;
+	}
+	public void setPhone_no(String phone_no) {
+		this.phone_no = phone_no;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public CustomerDetails(String customer_ID, String name, byte[] photo, String firstName, String middleName,
+			String lastName, String email, String phone_no, String address) {
+		super();
+		this.customer_ID = customer_ID;
+		this.name = name;
+		this.photo = photo;
+		FirstName = firstName;
+		MiddleName = middleName;
+		LastName = lastName;
+		this.email = email;
+		this.phone_no = phone_no;
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "CustomerDetails [customer_ID=" + customer_ID + ", name=" + name + ", photo=" + Arrays.toString(photo)
+				+ ", FirstName=" + FirstName + ", MiddleName=" + MiddleName + ", LastName=" + LastName + ", email="
+				+ email + ", phone_no=" + phone_no + ", address=" + address + "]";
+	}
+	private String FirstName;
+	private String MiddleName;
+	private String LastName;
+	private String email;
+	private String phone_no;
+	private String address;
+	
+	
+}

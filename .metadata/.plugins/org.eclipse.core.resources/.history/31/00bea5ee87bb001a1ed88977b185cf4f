@@ -1,0 +1,12 @@
+package com.carwashadmin.main.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.carwashadmin.main.bean.CustomerDetails;
+import com.carwashadmin.main.bean.Details;
+
+
+public interface DetRepo extends MongoRepository<Details, String> {
+
+
+}

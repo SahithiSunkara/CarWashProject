@@ -1,0 +1,7 @@
+<p>home-login works!</p>
+
+<mat-tab-group>
+  <mat-tab label="First"> Home </mat-tab>
+  <mat-tab label="Second"> About </mat-tab>
+  
+</mat-tab-group>

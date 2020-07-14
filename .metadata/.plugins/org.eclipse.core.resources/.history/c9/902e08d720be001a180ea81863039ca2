@@ -1,0 +1,44 @@
+<h2>Register</h2>
+<div class="container">
+<form [formGroup]="registerform" (ngSubmit)="onSubmit()" novalidate>
+<div class="form-group">
+
+<mat-form-field appearance="fill">
+    <mat-label>FirstName</mat-label>
+    <input matInput type="text" name="firstname" class="form-control" formControlName="firstName" placeholder="First Name">
+  </mat-form-field>
+  </div>
+  <div class="form-group">
+  <label>Middle Name:</label><br>
+  <input type="text" name="middlename" class="form-control" formControlName="middleName" placeholder="Middle Name"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Last Name:</label><br>
+  <input type="text" name="lastname" class="form-control" formControlName="lastName" placeholder="Last Name"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Email ID:</label><br>
+  <input type="email" name="mail" class="form-control" formControlName="email" placeholder="Email-Id"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Phone no:</label><br>
+  <input type="number" name="phone" class="form-control" formControlName="phone_no"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Address:</label><br>
+  <input type="text" name="address" class="form-control" formControlName="address"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Password:</label><br>
+  <input type="password" name="password" class="form-control" formControlName="password" placeholder="Password"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Retype Password:</label><br>
+  <input type="password" name="password" class="form-control" formControlName="password" placeholder="ReType Password"><br>
+  </div>
+  <div class="form-group">
+  <button type="submit">Register</button>
+  <button type="button">Cancel</button>
+  </div>
+</form>
+</div>

@@ -1,0 +1,69 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators ,FormBuilder} from '@angular/forms';
+import { CustomerService } from '../customer.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatFormFieldModule,MatFormFieldControl} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
+@Component({
+  selector: 'app-new-order',
+  templateUrl: './new-order.component.html',
+  styleUrls: ['./new-order.component.css']
+})
+export class NewOrderComponent implements OnInit {
+
+clicked: boolean = false;
+			response : any;
+			packages : [];
+		orderform = new FormGroup({
+			firstName : new FormControl('',Validators.required),
+			middleName : new FormControl(''),
+			lastName : new FormControl('',Validators.required),
+			email : new FormControl('',Validators.required),
+			phone_no : new FormControl('',Validators.required),
+			address : new FormControl('',Validators.required),
+			password : new FormControl('',Validators.required),
+			
+			
+		})
+		
+	
+  constructor(private register:CustomerService,private formBuilder: FormBuilder) {
+	this.orderform = this.formBuilder.group({
+      packages: ['']
+    });
+of(this.getPackages()).subscribe(packages => {
+  this.packages = packages;
+  this.orderform.controls.orders.patchValue(this.packages[0].id);
+});
+ }
+
+ getPackages(){ [
+     { id: '1', name: 'package 1' },
+      { id: '2', name: 'package 2' },
+      { id: '3', name: 'package 3' },
+      { id: '4', name: 'package 4' }
+  ];
+}
+
+  ngOnInit(): void {
+	
+	
+	
+  }
+
+			onSubmit(){
+				console.log(this.orderform.value)
+				this.register.register(this.orderform.value).subscribe((result)=>{
+		console.warn(result)
+		this.response = result
+			})
+}
+
+}

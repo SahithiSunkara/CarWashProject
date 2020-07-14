@@ -1,0 +1,62 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CustomerService } from '../customer.service';
+import { HomeLoginComponent } from '../home-login/home-login.component';
+
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+
+export interface PeriodicElement {
+  orderno:number;
+  carno:string;
+  package:string;
+  status:string;
+  washer:string;
+}
+
+@Component({
+  selector: 'app-washer-home',
+  templateUrl: './washer-home.component.html',
+  styleUrls: ['./washer-home.component.css']
+})
+export class WasherHomeComponent implements OnInit {@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static: true}) sort:MatSort;
+	displayedColumns: string[] = ['orderno', 'carno', 'package', 'status','washer'];
+	dataSource:any;
+
+     id : any;
+username:any;
+@ViewChild(HomeLoginComponent) homecomponent:any;
+  constructor(private actRoute: ActivatedRoute, private service:CustomerService) {
+ }
+ELEMENT_DATA: any[] = [
+ 
+];
+
+  ngOnInit(){
+	
+	this.service.loginUserName.subscribe(result=>{
+		this.username=result;
+	})
+	
+	
+	console.log(this.username);
+	//this.setDataSet();
+	this.fetchData();
+  }
+setDataSet(){
+	this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
+}
+
+fetchData(){
+	this.service.getById(this.username).subscribe((result:any)=>{
+		this.ELEMENT_DATA = result
+		this.setDataSet();
+	})
+}
+
+
+}

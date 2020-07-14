@@ -1,0 +1,68 @@
+<h2>Place Order</h2>
+<mat-grid-list cols="2" rowHeight="2:1">
+<div class="container">
+<form [formGroup]="orderform" (ngSubmit)="onSubmit()" novalidate>
+<mat-grid-tile>
+  <div class="form-group">
+	<mat-form-field appearance="fill">
+    <mat-label>Car No</mat-label>
+    <input matInput type="text" name="carno" class="form-control" formControlName="carno" >
+  	</mat-form-field>
+  </div>
+  
+  <div class="form-group">
+    <mat-form-field appearance="fill" >
+    <mat-label>Packages</mat-label>
+  <mat-select formControlName="name">
+    <mat-option *ngFor="let package of packages">
+      {{package}}
+    </mat-option>
+  </mat-select>
+   </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Scheduled Date</mat-label>
+    <input matInput type="datetime" name="scheduled_date" class="form-control" formControlName="scheduled_date" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Delivery Date</mat-label>
+    <input matInput type="datetime" name="delivery_date" class="form-control" formControlName="delivery_date" >
+    </mat-form-field>
+   </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Pickup Location</mat-label>
+    <input matInput type="text" name="pickuplocation" class="form-control" formControlName="pickuplocation" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Delivery Location</mat-label>
+    <input matInput type="text" name="droplocation" class="form-control" formControlName="droplocation" >
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Notes</mat-label>
+    <input matInput type="text" name="notes" class="form-control" formControlName="notes" >
+    </mat-form-field>
+   </div>
+ 
+  
+  <div class="form-group">
+  
+  <button type="submit">Place Order</button><br>
+  <button type="button" routerLink="/">Cancel</button>
+  </div></mat-grid-tile>
+</form>
+</div>
+

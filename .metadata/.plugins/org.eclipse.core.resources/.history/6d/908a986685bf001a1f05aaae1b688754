@@ -1,0 +1,50 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatFormFieldModule,MatFormFieldControl} from '@angular/material/form-field';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { CustomerService } from '.././customer.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+
+
+@Component({
+  selector: 'app-home-login',
+  templateUrl: './home-login.component.html',
+  styleUrls: ['./home-login.component.css']
+})
+export class HomeLoginComponent implements OnInit {
+
+		
+		loginform = new FormGroup({
+			username : new FormControl(''),
+			password : new FormControl('')
+		})
+	
+	
+  constructor(private login:CustomerService,private router: Router) {}
+
+  ngOnInit(): void {
+	this.login.loginUserName.subscribe(result=>{
+		this.loginform.patchValue({
+			username:result
+		})
+	})
+  }
+
+   onSubmit(){
+	
+	let Admin:any = "Admin";
+	let pass:any = "admin";
+	console.log(this.loginform.get('username')== Admin && this.loginform.get('password') == pass)
+	if(this.loginform.get('username')== Admin && this.loginform.get('password') == pass){
+		this.router.navigate(['/adminhome']);
+	}
+				console.log(this.loginform.value)
+				const params=this.login.login(this.loginform.value)
+				console.log(params)
+				this.router.navigate(['/customerhome']);
+		
+}
+
+}

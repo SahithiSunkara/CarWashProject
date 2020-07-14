@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { CustomerService } from '../customer.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatFormFieldModule,MatFormFieldControl} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
+@Component({
+  selector: 'app-new-order',
+  templateUrl: './new-order.component.html',
+  styleUrls: ['./new-order.component.css']
+})
+export class NewOrderComponent implements OnInit {
+
+clicked: boolean = false;
+			response : any;
+		orderform = new FormGroup({
+			firstName : new FormControl('',Validators.required),
+			middleName : new FormControl(''),
+			lastName : new FormControl('',Validators.required),
+			email : new FormControl('',Validators.required),
+			phone_no : new FormControl('',Validators.required),
+			address : new FormControl('',Validators.required),
+			password : new FormControl('',Validators.required)
+			
+		})
+		
+	 foods: Food[] = [
+    {value: 'package-0', viewValue: 'Regular'},
+    {value: 'package-1', viewValue: 'Interium'},
+    {value: 'package-2', viewValue: 'Full'}
+  ];
+  constructor(private register:CustomerService) { }
+
+  ngOnInit(): void {
+	
+	
+	
+  }
+
+			onSubmit(){
+				console.log(this.orderform.value)
+				this.register.register(this.orderform.value).subscribe((result)=>{
+		console.warn(result)
+		this.response = result
+			})
+}
+
+}

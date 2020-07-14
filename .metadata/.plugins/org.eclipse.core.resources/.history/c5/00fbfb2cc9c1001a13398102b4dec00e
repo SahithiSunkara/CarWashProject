@@ -1,0 +1,33 @@
+package com.carwashadmin.main.serviceimpl;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.carwashadmin.main.bean.Details;
+import com.carwashadmin.main.repository.TestRepo;
+
+public class Userloginservice implements UserDetailsService{
+
+	@Autowired
+	TestRepo repo;
+	
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		List<Details> user = repo.findByEmail(email);
+		if(user == null) {
+		      throw new UsernameNotFoundException("User not found");
+		    }
+		    List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
+		    return new User(user.get(0).getEmail(), user.get(0).getPassword(), authorities);
+		  
+	}
+
+}

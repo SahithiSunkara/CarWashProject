@@ -1,0 +1,33 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+@NgModule({
+  declarations: [
+],
+  imports: [
+    CommonModule,
+FormsModule,
+ReactiveFormsModule,
+HttpClientModule,
+MatDialogModule,
+MatTabsModule,
+MatFormFieldModule
+  ],
+ exports: [
+	CommonModule,
+	FormsModule,
+	ReactiveFormsModule,
+	HttpClientModule,
+	MatDialogModule,
+	MatTabsModule,
+	MatFormFieldModule
+]
+})
+export class CustomerModulModule { }

@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { HomeLoginComponent } from '../home-login/home-login.component';
+import { ViewChild, AfterViewInit } from '@angular/core';
+import {CustomerService} from '../customer.service';
+
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import { EditOrderComponent } from '.././edit-order/edit-order.component';
+
+
+
+@Component({
+  selector: 'app-customer-home',
+  templateUrl: './customer-home.component.html',
+  styleUrls: ['./customer-home.component.css']
+})
+export class CustomerHomeComponent implements OnInit {
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static: true}) sort:MatSort;
+	displayedColumns: string[] = ['orderno', 'carno', 'packages', 'status','washer'];
+	dataSource:any;
+
+     id : any;
+formValues:any;
+username:any;
+backend:any;
+@ViewChild(HomeLoginComponent) homecomponent:any;
+  constructor(private actRoute: ActivatedRoute, private service:CustomerService,public dialog: MatDialog) {
+ }
+ELEMENT_DATA: any[] = [
+ 
+];
+
+  ngOnInit(){
+	
+	this.service.loginUserName.subscribe(result=>{
+		console.log(result)
+		this.formValues=result;
+		this.username=this.formValues
+	})
+	
+	
+	console.log(this.username);
+	//this.setDataSet();
+	this.fetchData();
+  }
+setDataSet(){
+	this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
+}
+
+fetchData(){
+	console.log(this.username)
+	this.service.getbyCustomer(this.username).subscribe((result:any)=>{
+		this.ELEMENT_DATA = result
+		console.log(this.ELEMENT_DATA)
+		this.setDataSet();
+	})
+}
+
+
+/*openDialog(): void {
+    const dialogRef = this.dialog.open(EditOrderComponent, {
+      width: '250px',
+      data: {orderno : this.ELEMENT_DATA}
+    });
+}*/
+
+
+}

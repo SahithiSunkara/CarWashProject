@@ -1,0 +1,43 @@
+<h2>Register</h2>
+<div class="container">
+<form [formGroup]="registerform">
+<div class="form-group">
+
+<label class="important">First Name:</label><br>
+  <input type="text" name="firstname" class="form-control" formControlName="fname" placeholder="First Name">
+  <span *ngIf="fname.invalid && fname.touched">Name is required</span>
+  </div>
+  <div class="form-group">
+  <label>Middle Name:</label><br>
+  <input type="text" name="middlename" class="form-control" formControlName="mname" placeholder="Middle Name"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Last Name:</label><br>
+  <input type="text" name="lastname" class="form-control" formControlName="lname" placeholder="Last Name"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Email ID:</label><br>
+  <input type="email" name="mail" class="form-control" formControlName="mname" placeholder="Email-Id"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Phone no:</label><br>
+  <input type="number" name="phone" class="form-control" formControlName="phone"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Address:</label><br>
+  <input type="text" name="address" class="form-control" formControlName="address"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Password:</label><br>
+  <input type="password" name="password" class="form-control" formControlName="password" placeholder="Password"><br>
+  </div>
+  <div class="form-group">
+  <label class="important">Retype Password:</label><br>
+  <input type="password" name="password" class="form-control" formControlName="password" placeholder="ReType Password"><br>
+  </div>
+  <div class="form-group">
+  <button type="submit">Register</button>
+  <button type="button">Cancel</button>
+  </div>
+</form>
+</div>

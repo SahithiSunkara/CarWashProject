@@ -1,0 +1,10 @@
+package com.carwashadmin.main.orderServicimpl;
+
+import org.springframework.stereotype.Service;
+
+import com.carwashadmin.main.orderService.OrderService;
+
+@Service
+public class OrderServiceImpl implements OrderService{
+
+}
