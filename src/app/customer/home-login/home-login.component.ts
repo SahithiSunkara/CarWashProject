@@ -47,12 +47,15 @@ onSubmit(){
 					
 				}
 				else{
-					this.res=this.login.login(this.loginform.get('email').value)
-					
+				this.res=this.login.login(this.loginform.get('email').value)
 					console.log(this.res);
-					console.log(JSON.stringify(this.res));
-					
+					this.response=JSON.stringify(this.res);
+					if(this.response.role == "cutomer"){
 					this.router.navigate(['/customerhome']);
+					}
+					else{
+						this.router.navigate(['/washerhome']);
+					}
 					this.IsWait=false;
 				}
 				
