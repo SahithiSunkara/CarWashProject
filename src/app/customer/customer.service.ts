@@ -60,6 +60,10 @@ changeUserName(form: FormData){
 		return this.http.post(environment.neworderUrl, data)
 	}
 
+    upload(data:any){
+        return this.http.post(environment.uploadImg,data);
+    }
+
    public getAll() {
 	
 	return this.http.get(environment.getAllUrl);
@@ -77,7 +81,11 @@ changeUserName(form: FormData){
 	getbyOrderId(orderId: number){
 		return this.http.get(environment.getbyorderId+"/"+orderId);
 	}
-	
+    
+    getImage(name: string){
+        return this.http.get(environment.getImage+"/"+name);
+    }
+
     delete(id: string) {
         return this.http.delete(`${environment.deleteuserUrl}/users/${id}`)
             .pipe(map(x => {

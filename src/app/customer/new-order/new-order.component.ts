@@ -25,6 +25,8 @@ imageSrc: string;
 clicked: boolean = false;
 			response : any;
 			username:any;
+			selectedFile: File;
+			message: string;
 			packages: any = ['package1', 'package2', 'package3', 'package4']
 		
 			orderform = new FormGroup({
@@ -54,23 +56,8 @@ packageForm = this.formBuilder.group({
   }
    
   onFileChange(event : any) {
-    const reader = new FileReader();
+	this.selectedFile = event.target.files[0];
     
-    if(event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-    
-      reader.onload = () => {
-   
-        this.imageSrc = reader.result as string;
-     
-        this.orderform.patchValue({
-          image: [file]
-        });
-   
-      };
-   
-    }
   }
 		
   ngOnInit(){
@@ -114,14 +101,38 @@ packageForm = this.formBuilder.group({
 		}
 
 			onSubmit(){
-				console.log(this.orderform.get("image").value)
-				console.log(this.orderform.get("customer").value)
+				console.log(this.selectedFile.name);
+				this.orderform.controls.image.setValue(this.selectedFile.name);
+				console.log(this.orderform.get("image").value);
+				console.log(this.orderform.get("customer").value);
+				this.onUpload();
 				this.service.createOrder(this.orderform.value).subscribe((result)=>{
 		console.warn(result)
+
 		this.response = result
 		alert("Order Successfully placed")
 		this.router.navigate(['/customerhome']);
 			})
 }
+
+onUpload() {
+    console.log(this.selectedFile);
+    
+    //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+  
+    //Make a call to the Spring Boot Application to save the image
+    this.service.upload( uploadImageData).subscribe((response : any) => {
+        if (response.status === 200) {
+          this.message = 'Image uploaded successfully';
+        } else {
+          this.message = 'Image not uploaded successfully';
+        }
+      }
+      );
+
+
+  }
 
 }

@@ -14,7 +14,9 @@ export const environment = {
 	getbycustomerUrl: 'http://localhost:8090/orders/getbycustomer',
 	getbyWasherUrl: 'http://localhost:8090/orders/getbywasher',
 	neworderUrl: 'http://localhost:8090/orders/createorder',
-	updatorderUrl: 'http://localhost:8090/orders/updateorder'
+	updatorderUrl: 'http://localhost:8090/orders/updateorder',
+	getImage: 'http://localhost:8090/orders/getimage',
+	uploadImg: 'http://localhost:8090/orders/upload'
 };
 
 /*
